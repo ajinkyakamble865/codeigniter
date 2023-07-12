@@ -65,7 +65,7 @@
                                     <?php } ?>
                                 </td>
                                 <td class="text-center">
-                                  <a href="" class="btn btn-primary btn-sm">
+                                  <a href="<?php echo base_url().'admin/category/edit'.$categoryRow['id'];?>" class="btn btn-primary btn-sm">
                                     <i class="far fa-edit"></i> Edit
                                   </a>
                                   <a href="" class="btn btn-danger btn-sm">
