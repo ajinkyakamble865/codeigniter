@@ -44,14 +44,21 @@
                                 echo(!empty($errorImageUpload)) ? 'is-invalid' : '';?>">
 
                                 <?php echo (!empty($errorImageUpload)) ? $errorImageUpload : '';?>
+                                <br>
+
+                                <?php if ($category['image'] != "" && file_exists('./public/uploads/category'.$category['image'])) {?>
+                                    <img src="<?php echo base_url().'public/uploads/category'.$category['image'] ?>" >
+                                <?php } else {?>
+                                    <img width="210px" src="<?php echo base_url().'public/uploads/no-image.jpg' ?>">
+                                <?php }?>    
 
                             </div>
                             <div class="custom-control custom-radio float-left">
-                                <input class="custom-control-input" value="1" type="radio" id="statusActive" name="statusActive">
+                                <input class="custom-control-input" value="1" type="radio" id="statusActive" name="statusActive" <?php echo ($category['status'] == 1) ? 'checked' : '';?>>
                                 <label for="statusActive" class="custom-control-label">Active</label>
                             </div>
                             <div class="custom-control custom-radio float-left ml-3">
-                                <input class="custom-control-input" value="0" type="radio" id="statusBlock" name="status">
+                                <input class="custom-control-input" value="0" type="radio" id="statusBlock" name="status" <?php echo ($category['status'] == 0) ? 'checked' : '';?>>
                                 <label for="statusBlock" class="custom-control-label">Block</label>
                             </div>  
                     </div>
