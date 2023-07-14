@@ -87,6 +87,36 @@ class Category extends CI_Controller{
     public function edit($id)
     {
         //echo $id;
+        $this->load->model('Category_model');
+        $category = $this->Category_model->getCategory($id);
+        
+
+        if (empty($category)) {
+            $this->session->set_flashdata('error','Category not found');
+            redirect(base_url().'admin/category/index');
+            
+        }
+
+        $this->load->helper('common_helper');
+        $config['upload_path']         = './public/uploads/category/';
+        $config['allowed_types']       = 'gif|jpg|png';
+        $config['encrypt_name']        = false;
+        
+
+        $this->load->library('upload', $config);
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters('<p class="invalid-feedback">','</p>');
+        $this->form_validation->set_rules('name','Name','trim|required');
+
+        if ($this->form_validation->run() == TRUE) {
+
+        } else {
+            $data['category'] = $category;
+            $this->load->view('admin/category/edit',$data);
+        }
+
+
     }
 
     // This method will delete a category
