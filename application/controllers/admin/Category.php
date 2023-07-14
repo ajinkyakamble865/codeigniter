@@ -86,7 +86,7 @@ class Category extends CI_Controller{
     // This method will show category eidt page
     public function edit($id)
     {
-        echo $id;
+        //echo $id;
     }
 
     // This method will delete a category

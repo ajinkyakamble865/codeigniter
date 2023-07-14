@@ -13,5 +13,12 @@ class Category_model extends CI_Model{
         }
         return $this->db->get('categories')->result_array();
     }
+
+    public function getCategory($id){
+        $this->db->where('id',$id);
+        $category = $this->db->get('categories')->row_array();
+        //SELECT * FROM categories WHERE id = {ID}
+        return $category;
+    }
 }
 ?>
