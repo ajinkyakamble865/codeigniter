@@ -111,6 +111,43 @@ class Category extends CI_Controller{
 
         if ($this->form_validation->run() == TRUE) {
 
+            if (!empty($_FILES['image']['name'])) {
+                
+                if($this->upload->do_upload('image')) {
+                    // File uploaded successfully
+                    $data = $this->upload->data();
+
+                    //Resizig part
+                    resizeImage($config['upload_path'].$data['file_name'],$config['upload_path'].'thumb'.$data['file_name'],300,270);
+                   
+                    $formArray['image'] = $data['file_name'];
+                    $formArray['name'] = $this->input->post('name');
+                    $formArray['status'] = $this->input->post('status');
+                    $this->Category_model->update($id,$formArray);
+    
+                    $this->session->set_flashdata('success','Category added successfully.');
+                    redirect(base_url().'admin/category/index');
+
+
+                }else {
+                   
+                    // we got some errors
+                    $error = $this->upload->display_errors("<p class='invalid-feedback>'","</p>");
+                    $data['errorImageUpload'] = $error;
+                    $this->load->view('admin/category/create',$data);
+                }
+
+            }else{
+
+                $formArray['name'] = $this->input->post('name');
+                $formArray['status'] = $this->input->post('status');
+                $this->Category_model->create($formArray);
+
+                $this->session->set_flashdata('success','Category added successfully.');
+                redirect(base_url().'admin/category/index');
+                //we will create category without image
+            }
+
         } else {
             $data['category'] = $category;
             $this->load->view('admin/category/edit',$data);

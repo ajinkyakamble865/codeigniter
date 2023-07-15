@@ -20,5 +20,12 @@ class Category_model extends CI_Model{
         //SELECT * FROM categories WHERE id = {ID}
         return $category;
     }
+
+    public function update($id, $formArray) {
+
+        $this->db->where('id',$id);
+        $this->db->update($formArray);
+        
+    }
 }
 ?>

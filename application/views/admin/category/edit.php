@@ -30,7 +30,7 @@
                     </div>
                 </div>
 
-            <form action="<?php echo base_url().'admin/category/create';?>" method="post" name="categoryForm" id="categoryForm" enctype="multipart/form-data">
+            <form action="<?php echo base_url().'admin/category/edit/'.$category['id'];?>" method="post" name="categoryForm" id="categoryForm" enctype="multipart/form-data">
                     <div class="card-body">
                             <div class="form-group">
                                 <label for="">Name</label>
