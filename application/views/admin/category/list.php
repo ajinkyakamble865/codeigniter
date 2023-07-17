@@ -65,14 +65,14 @@
                                   <?php if ($categoryRow['status'] == 1) {?>
                                     <span class="badge badge-success">Active</span>
                                   <?php } else { ?>
-                                    <span class="badge badge-success">Block</span>
+                                    <span class="badge badge-danger">Block</span>
                                     <?php } ?>
                                 </td>
                                 <td class="text-center">
                                   <a href="<?php echo base_url().'admin/category/edit/'.$categoryRow['id'];?>" class="btn btn-primary btn-sm">
                                     <i class="far fa-edit"></i> Edit
                                   </a>
-                                  <a href="" class="btn btn-danger btn-sm">
+                                  <a href="javascript:void(0);" onclick="deleteCategory(<?php echo $categoryRow['id'] ?>)" class="btn btn-danger btn-sm">
                                     <i class="far fa-trash-alt"></i> Delete
                                   </a>
                                 </td>
@@ -104,3 +104,11 @@
   </div>
   <!-- /.content-wrapper -->
 <?php $this->load->view('admin/footer');?>
+
+<script>
+  function deleteCategory(id) {
+    if (confirm('Are You Sure You Want To Delete Category')) {
+      window.location.href='<?php echo base_url().'admin/category/delete/'?>'+id;
+    }
+  }
+</script>

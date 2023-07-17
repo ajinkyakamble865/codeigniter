@@ -93,8 +93,7 @@ class Category extends CI_Controller{
 
         if (empty($category)) {
             $this->session->set_flashdata('error','Category not found');
-            redirect(base_url().'admin/category/index');
-            
+            redirect(base_url().'admin/category/index');   
         }
 
         $this->load->helper('common_helper');
@@ -166,9 +165,30 @@ class Category extends CI_Controller{
     }
 
     // This method will delete a category
-    public function delete() 
+    public function delete($id) 
     {
+        $this->load->model('Category_model');
+        $category = $this->Category_model->getCategory($id);
         
+
+        if (empty($category)) {
+            $this->session->set_flashdata('error','Category not found');
+            redirect(base_url().'admin/category/index');   
+        }
+
+        if (file_exists('./public/uploads/'.$category['image'])) {
+            unlink('./public/uploads/'.$category['image']);
+        }
+
+        if (file_exists('./public/uploads/category/'.$category['image'])) {
+            unlink('./public/uploads/category/'.$category['image']);
+        }
+
+        $this->Category_model->delete($id);
+
+        $this->session->set_flashdata('success','Category deleted successfully');
+        redirect(base_url().'admin/category/index');
+
     }
 }
 ?>

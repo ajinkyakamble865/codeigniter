@@ -27,5 +27,11 @@ class Category_model extends CI_Model{
         $this->db->update('categories',$formArray);
         
     }
+
+    public function delete($id)
+    {
+        $this->db->where('id',$id);
+        $this->db->delete('categories');
+    }
 }
 ?>
