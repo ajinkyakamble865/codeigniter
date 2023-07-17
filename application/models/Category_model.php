@@ -24,7 +24,7 @@ class Category_model extends CI_Model{
     public function update($id, $formArray) {
 
         $this->db->where('id',$id);
-        $this->db->update($formArray);
+        $this->db->update('categories',$formArray);
         
     }
 }

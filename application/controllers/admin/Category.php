@@ -124,8 +124,16 @@ class Category extends CI_Controller{
                     $formArray['name'] = $this->input->post('name');
                     $formArray['status'] = $this->input->post('status');
                     $this->Category_model->update($id,$formArray);
+
+                    if (file_exists('./public/uploads/'.$category['image'])) {
+                        unlink('./public/uploads/'.$category['image']);
+                    }
+
+                    if (file_exists('./public/uploads/category/'.$category['image'])) {
+                        unlink('./public/uploads/category/'.$category['image']);
+                    }
     
-                    $this->session->set_flashdata('success','Category added successfully.');
+                    $this->session->set_flashdata('success','Category updated successfully.');
                     redirect(base_url().'admin/category/index');
 
 
@@ -134,16 +142,17 @@ class Category extends CI_Controller{
                     // we got some errors
                     $error = $this->upload->display_errors("<p class='invalid-feedback>'","</p>");
                     $data['errorImageUpload'] = $error;
-                    $this->load->view('admin/category/create',$data);
+                    $data['category'] = $category;
+                    $this->load->view('admin/category/edit',$data);
                 }
 
             }else{
 
                 $formArray['name'] = $this->input->post('name');
                 $formArray['status'] = $this->input->post('status');
-                $this->Category_model->create($formArray);
+                $this->Category_model->update($id,$formArray);
 
-                $this->session->set_flashdata('success','Category added successfully.');
+                $this->session->set_flashdata('success','Category updated successfully.');
                 redirect(base_url().'admin/category/index');
                 //we will create category without image
             }

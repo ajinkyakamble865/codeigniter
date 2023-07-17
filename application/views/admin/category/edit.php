@@ -46,10 +46,12 @@
                                 <?php echo (!empty($errorImageUpload)) ? $errorImageUpload : '';?>
                                 <br>
 
+                                <?php //echo "<pre>"; print_r($category); exit;?>
+
                                 <?php if ($category['image'] != "" && file_exists('./public/uploads/category'.$category['image'])) {?>
                                     <img src="<?php echo base_url().'public/uploads/category'.$category['image'] ?>" >
                                 <?php } else {?>
-                                    <img width="210px" src="<?php echo base_url().'public/uploads/no-image.jpg' ?>">
+                                    <img width="210px" src="<?php echo base_url().'public/uploads/no-image.jpg' ?>" >
                                 <?php }?>    
 
                             </div>
