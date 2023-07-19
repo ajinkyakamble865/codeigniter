@@ -56,7 +56,7 @@
 
                             </div>
                             <div class="custom-control custom-radio float-left">
-                                <input class="custom-control-input" value="1" type="radio" id="statusActive" name="statusActive" <?php echo ($category['status'] == 1) ? 'checked' : '';?>>
+                                <input class="custom-control-input" value="1" type="radio" id="statusActive" name="status" <?php echo ($category['status'] == 1) ? 'checked' : '';?>>
                                 <label for="statusActive" class="custom-control-label">Active</label>
                             </div>
                             <div class="custom-control custom-radio float-left ml-3">
