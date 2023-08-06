@@ -16,14 +16,28 @@ class Article extends CI_Controller {
         $categories = $this->Category_model->getCategories();
         $data['categories'] = $categories;
 
-        $this->load->library('form_validation');
+        // File Upload Settings
+        $config['upload_path'] = './public/admin/article/';
+        $config['allowed_types'] = 'gif|png|jpg';
+        $config['encrypt_name'] = false;
+        $this->load->library('upload',$config);
 
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters('<p class="invalid-feedback">','</p>');
         $this->form_validation->set_rules('category_id','Category','trim|required');
         $this->form_validation->set_rules('title','Title','trim|required|min_length[20]');
         $this->form_validation->set_rules('author','Author','trim|required');
 
         if ($this->form_validation->run() == true) {
             // form validated successfully and we can proceed
+
+            if (!empty($_FILES['image']['name'])) {
+                # code...
+            }else {
+                # code...
+            }
+
 
         } else {
             // form not validated, you can show errors

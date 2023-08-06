@@ -23,8 +23,10 @@
 <script>
   $(function () {
     // Summernote
-    $('.textarea').summernote()
-        height: '400px'
+    $('.textarea').summernote({
+      height: '200px'
+    })
+         
   })
 </script>
 </body>

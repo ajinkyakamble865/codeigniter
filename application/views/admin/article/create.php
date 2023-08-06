@@ -35,27 +35,33 @@
 
                             <div class="form-group">
                                 <label for="">Category</label>
-                                <select name="category_id" class="form-control" id="category_id">
+                                <select name="category_id" class="form-control <?php echo (form_error('category_id') != "") ? 'is-invalid' : '';?>" id="category_id">
                                     <option value="">Select a Category</option>
                                     <?php 
                                     if(!empty($categories)){
                                         foreach ($categories as $category) {
                                             ?>
-                                            <option value="<?php $category['id'];?>"><?php echo $category['name'];?></option>
+                                            <option <?php echo set_select('category_id',$category['id'],false);?> value="<?php echo $category['id'];?>"><?php echo $category['name'];?></option>
                                             <?php
                                         }
                                     }
                                     ?>
                                 </select>
+                                <?php 
+                                echo form_error('category_id');
+                                ?>
                             </div>
 
                             <div class="form-group">
                                 <label for="">Title</label>
-                                <input type="text" name="title" id="title" value="" class="form-control">
+                                <input class="form-control <?php echo (form_error('title') != "") ? 'is-invalid' : '';?>" type="text" name="title" id="title" value="<?php echo set_value('title');?>">
+                                <?php 
+                                echo form_error('title');
+                                ?>
                             </div>
                             <div class="form-group">
                                 <label for="">Description</label>
-                                <textarea name="description" id="description" class="textarea"></textarea>
+                                <textarea name="description" id="description" class="textarea"><?php echo set_value('description');?></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="">Image</label><br>
@@ -63,7 +69,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Author</label>
-                                <input type="text" name="author" id="author" value="" class="form-control">
+                                <input type="text" name="author" id="author" value="<?php echo set_value('author');?>" class="form-control <?php echo (form_error('author') != "") ? 'is-invalid' : '';?>">
+                                <?php 
+                                echo form_error('author');
+                                ?>
                             </div>
                             <div class="custom-control custom-radio float-left">
                                 <input class="custom-control-input" value="1" type="radio" id="statusActive" name="status">
