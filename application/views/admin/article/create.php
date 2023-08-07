@@ -65,7 +65,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Image</label><br>
-                                <input type="file" name="image" id="image" class="">
+                                <input type="file" name="image" id="image" class="<?php echo (!empty($imageError)) ? 'is-invalid' : '';?>">
+                                <?php
+                                if (!empty($imageError)) echo $imageError;
+                                ?>
                             </div>
                             <div class="form-group">
                                 <label for="">Author</label>

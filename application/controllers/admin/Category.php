@@ -45,7 +45,7 @@ class Category extends CI_Controller{
                     $data = $this->upload->data();
 
                     //Resizig part
-                    resizeImage($config['upload_path'].$data['file_name'],$config['upload_path'].'thumb'.$data['file_name'],300,270);
+                    resizeImage($config['upload_path'].$data['file_name'],$config['upload_path'].'thumb/'.$data['file_name'],300,270);
                    
                     $formArray['image'] = $data['file_name'];
                     $formArray['name'] = $this->input->post('name');
