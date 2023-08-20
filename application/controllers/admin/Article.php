@@ -4,10 +4,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Article extends CI_Controller {
 
     // this method will show articles listing page
-    public function index()
+    public function index($page=1)
     {
-        $this->load->view('admin/article/list');
+        $this->load->model('Article_model');
+        $this->load->library('pagination');
+        $config['base_url'] = base_url('admin/article/index');
+        $config['total_rows'] = $this->Article_model->getArticlesCount();
+        $config['per_page'] = 5;
+        $config['use_page_numbers'] = true;
+
+    
+        $this->pagination->initialize($config);
+        $pagination_links = $this->pagination->create_links();
+        
+        $page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 1; // Get the current page segment from URL
+        
+        // Calculate offset and limit using $page
+        $param['offset'] = ($page - 1) * $config['per_page'];
+        $param['limit'] = $config['per_page'];
+        
+        $articles = $this->Article_model->getArticles($param);
+    
+        $data['articles'] = $articles;
+        $data['pagination_links'] = $pagination_links;
+        $this->load->view('admin/article/list', $data);
     }
+    
 
     // this method will show articles create page
     public function create()
