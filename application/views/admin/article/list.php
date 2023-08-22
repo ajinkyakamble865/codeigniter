@@ -34,7 +34,7 @@
                     <div class="card-title">
                         <form action="" method="get" id="searchFrm" name="searchFrm">
                             <div class="input-group mb-0">
-                                <input type="text" value="" name="q" class="form-control" placeholder="search">
+                                <input type="text" value="<?php echo $q;?>" name="q" class="form-control" placeholder="search">
                                 <div class="input-group-append">
                                     <button class="input-group-text" id="basic-addon1">
                                         <i class="fas fa-search"></i>
@@ -107,7 +107,7 @@
                            } else { ?>
 
                             <tr>
-                              <td colspan="4">Records not found</td>
+                              <td colspan="7">Records not found</td>
                             </tr>
 
                             <?php
