@@ -3,8 +3,13 @@
 class Article_model extends CI_model
 {
     
-    function getArticle() {
+    function getArticle($id) {
         
+        $this->db->where('id',$id);
+        $query = $this->db->get('articles');
+        $article = $query->row_array();
+        //SELECT * FROM articles WHERE id={YourArticleId $id}
+        return $article;
     }
 
     function getArticles($param = array()) {
@@ -42,11 +47,15 @@ class Article_model extends CI_model
         return $this->db->insert_id();
     }
 
-    function updateArticle() {
+    function updateArticle($id,$form_Array) {
+        $this->db->where('id',$id);
+        $this->db->update('articles',$form_Array);
         
     }
 
-    function deleteArticle() {
+    function deleteArticle($id) {
+        $this->db->where('id',$id);
+        $this->db->delete('articles');
         
     }
 

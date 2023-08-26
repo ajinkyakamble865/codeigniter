@@ -74,7 +74,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
 
-           <li class="nav-item has-treeview ">
+           <li class="nav-item has-treeview <?php echo (!empty($mainModule) && $mainModule == "category") ? 'menu-open' : ''?>">
             <a href="#" class="nav-link ">
             <i class="far fa-circle nav-icon"></i>
               <p>
@@ -84,13 +84,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link ">
+                <a href="<?php echo base_url().'admin/category/create'?>" class="nav-link <?php echo (!empty($mainModule) && $mainModule == "category" && !empty($subModule) && $subModule == "createCategory") ? 'active' : ''?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Category</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="<?php echo base_url().'admin/category/index'?>" class="nav-link <?php echo (!empty($mainModule) && $mainModule == "category" && !empty($subModule) && $subModule == "viewCategory") ? 'active' : ''?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View Category</p>
                 </a>
@@ -98,7 +98,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
 
-          <li class="nav-item has-treeview ">
+          <li class="nav-item has-treeview <?php echo (!empty($mainModule) && $mainModule == "article") ? 'menu-open' : ''?>">
             <a href="#" class="nav-link ">
             <i class="far fa-circle nav-icon"></i>
               <p>
@@ -108,13 +108,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link ">
+                <a href="<?php echo base_url().'admin/article/create'?>" class="nav-link <?php echo (!empty($mainModule) && $mainModule == "article" && !empty($subModule) && $subModule == "createArticle") ? 'active' : ''?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Article</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="<?php echo base_url().'admin/article/index'?>" class="nav-link <?php echo (!empty($mainModule) && $mainModule == "article" && !empty($subModule) && $subModule == "viewArticle") ? 'active' : ''?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View Article</p>
                 </a>

@@ -89,15 +89,15 @@
                                   <?php
                                 }else {
                                 ?>
-                                  <p class="badge badge-danger">Active</p>
+                                  <p class="badge badge-danger">Block</p>
                                 <?php } ?>
                               </td>
                               <td class="text-center">
-                                <a href="" class="btn bnt-sm btn-primary">
+                                <a href="<?php echo base_url('admin/article/edit/'.$article['id']);?>" class="btn bnt-sm btn-primary">
                                   <i class="far fa-edit"></i>
                                 </a>
 
-                                <a href="" class="btn bnt-sm btn-danger">
+                                <a href="javascript:void(0);" onclick="deleteArticle(<?php echo $article['id']; ?>)" class="btn bnt-sm btn-danger">
                                   <i class="far fa-trash-alt"></i>
                                 </a>
                               </td>
@@ -141,9 +141,9 @@
 <?php $this->load->view('admin/footer');?>
 
 <script>
-  function deleteCategory(id) {
-    if (confirm('Are You Sure You Want To Delete Category')) {
-      window.location.href='<?php echo base_url().'admin/category/delete/'?>'+id;
+  function deleteArticle(id) {
+    if (confirm('Are You Sure You Want To Delete Article?')) {
+      window.location.href='<?php echo base_url().'admin/article/delete/'?>'+id;
     }
   }
 </script>

@@ -3,6 +3,18 @@ defined('BASEPATH') OR exit('NO direct script access allowed');
 
 class Category extends CI_Controller{
 
+    public function __construct(){
+        parent::__construct();
+        $admin = $this->session->userdata('admin');
+
+        if (empty($admin)) {
+
+            $this->session->set_flashdata('msg','Your session has been expired');
+            redirect(base_url().'admin/login/index');
+        }
+
+    }
+
     // This method will show category list page
 
     public function index() 
@@ -16,6 +28,9 @@ class Category extends CI_Controller{
         $data['categories'] = $categories;
         $data['queryString'] = $queryString;
 
+        $data['mainModule'] = 'category';
+        $data['subModule'] = 'viewCategory';
+
         //echo "<pre>"; print_r($data); //exit;
         $this->load->view('admin/category/list',$data);
     }
@@ -24,9 +39,12 @@ class Category extends CI_Controller{
     public function create() 
     {
         $this->load->helper('common_helper');
+
         $config['upload_path']         = './public/uploads/category/';
         $config['allowed_types']       = 'gif|jpg|png';
         $config['encrypt_name']        = false;
+        $data['mainModule'] = 'category';
+        $data['subModule'] = 'createCategory';
         
 
         $this->load->library('upload', $config);
@@ -77,7 +95,7 @@ class Category extends CI_Controller{
             //will save categoryin database
         } else {
             // will show errors
-            $this->load->view('admin/category/create');
+            $this->load->view('admin/category/create',$data);
         }
 
 
@@ -88,6 +106,10 @@ class Category extends CI_Controller{
     {
         //echo $id;
         $this->load->model('Category_model');
+
+        $data['mainModule'] = 'category';
+        $data['subModule'] = '';
+
         $category = $this->Category_model->getCategory($id);
         
 
