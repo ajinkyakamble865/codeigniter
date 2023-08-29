@@ -60,7 +60,26 @@ class Article_model extends CI_model
     }
 
    
+/* Front Methods*/
 
+function getArticlesFront($param = array()) {
+    if (isset($param['offset']) && isset($param['limit'])) {
+        $this->db->limit($param['limit'], $param['offset']); // Corrected order of parameters
+    }
+
+    if (isset($param['q'])) {
+        $this->db->or_like('title',trim($param['q']));
+        $this->db->or_like('author',trim($param['q']));
+    }
+
+    $this->db->order_by('created_at','DESC');
+    $query = $this->db->get('articles');
+
+    $articles = $query->result_array();
+    //echo $this->db->last_query();
+
+    return $articles;
+}
 
 
 

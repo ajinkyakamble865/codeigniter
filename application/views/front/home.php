@@ -1,50 +1,4 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?php echo base_url('public/css/bootstrap.min.css');?>" >
-
-    <link rel="stylesheet" href="<?php echo base_url('public/css/style.css');?>" >
-
-    <title>Codeigniter Web Application</title>
-  </head>
-  <body>
-  <header class="bg-light">
-    <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-light pt-3 pb-3">
-        <a class="navbar-brand" href="<?php echo base_url();?>">Codeigniter Web Application</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse right-align" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="<?php echo base_url();?>">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Abouts Us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Categories</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact Us</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-  </header>
+<?php $this->load->view('front/header');?>
 
   <div id="carouselExampleControls" class="carousel slide carousel-fade" data-ride="carousel">
     <div class="carousel-inner">
@@ -120,18 +74,27 @@
     </div>
   </div>
 
+  <?php if(!empty($articles)) { ?>
   <div class="pb-4 pt-4">
       <div class="container">
           <h3 class="pb-3 pt-4">LATEST BLOGS</h3>
           <div class="row">
+
+
+          <?php foreach ($articles as $article) { ?>
+
             <div class="col-md-3">
                 <div class="card h-100">
-                    <img src="<?php echo base_url('public/images/box01');?>" class="card-img-top" alt="">
+                  <?php if(file_exists('./public/uploads/articles/thumb_admin/'.$article['image'])) {?>
+                    <img src="<?php echo base_url('./public/uploads/articles/thumb_admin/'.$article['image'])?>" class="card-img-top" alt="">
+                  <?php } ?>  
                       <div class="card-body">
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <p class="card-text"><?php echo $article['title'];?></p>
                       </div>
                 </div>
-                </div>
+            </div>  
+            <?php } ?>  
+                <!-- 
                 <div class="col-md-3">
                 <div class="card h-100">
                     <img src="<?php echo base_url('public/images/box2');?>" class="card-img-top" alt="">
@@ -154,63 +117,12 @@
                       <div class="card-body">
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                       </div>
-                </div>
+                </div> -->
             </div>
         </div>
       </div>    
   </div>
 
-  <footer class="bg-light pt-5 pb-4 mt-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-            <h5>LOGO</h5>
-            <small class="text-muted">
-              <strong>Company inc.</strong><br>
-              Magebuddy Commerce
-              M401, Shri Mahagnaesh Nagari,
-              Mundhawa Pune 411037, India<br>
-              phone:8080082398<br>
-              ajinkyakamble865@gmail.com
-            </small>
-        </div>
-        <div class="col-md-3">
-            <h5>Important Links</h5>
+  <?php } ?>
 
-            <ul class="list-unstyled text-small">
-              <li><a href="#" class="text-muted">About Us</a></li>
-              <li><a href="#" class="text-muted">Services</a></li>
-              <li><a href="#" class="text-muted">Blog</a></li>
-              <li><a href="#" class="text-muted">Categories</a></li>
-              
-            </ul>
-          
-        </div>
-        <div class="col-md-3">
-            <h5>My Account</h5>
-
-            <ul class="list-unstyled text-small">
-              <li><a href="#" class="text-muted">Login</a></li>
-              <li><a href="#" class="text-muted">Register</a></li>
-              <li><a href="#" class="text-muted">My Articles</a></li>              
-            </ul>
-        </div>
-        <div class="col-md-3">
-            <h5>Support</h5>
-
-            <ul class="list-unstyled text-small">
-              <li><a href="#" class="text-muted">Contact Us</a></li>
-            </ul>
-          
-        </div>
-      </div>
-    </div>
-  </footer>
-
-    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="<?php echo base_url('public/js/jquery-3.5.1.slim.min.js');?>" ></script>
-    <script src="<?php echo base_url('public/js/bootstrap.min.js');?>" ></script>
-
-  
-  </body>
-</html>
+<?php $this->load->view('front/footer');?>
