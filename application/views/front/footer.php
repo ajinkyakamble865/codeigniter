@@ -18,8 +18,8 @@
             <ul class="list-unstyled text-small">
               <li><a href="<?php echo base_url('page/about');?>" class="text-muted">About Us</a></li>
               <li><a href="<?php echo base_url('page/services');?>" class="text-muted">Services</a></li>
-              <li><a href="#" class="text-muted">Blog</a></li>
-              <li><a href="#" class="text-muted">Categories</a></li>
+              <li><a href="<?php echo base_url('blog');?>" class="text-muted">Blog</a></li>
+              <li><a href="<?php echo base_url('blog/categories');?>" class="text-muted">Categories</a></li>
               
             </ul>
           

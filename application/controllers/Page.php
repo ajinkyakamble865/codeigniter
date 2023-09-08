@@ -8,6 +8,10 @@ class Page extends CI_controller{
     function services() {
         $this->load->view('front/services');
     }
+
+    function blog() {
+        $this->load->view('front/blog');
+    }
 }
 
 ?>

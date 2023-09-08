@@ -33,5 +33,11 @@ class Category_model extends CI_Model{
         $this->db->where('id',$id);
         $this->db->delete('categories');
     }
+
+    /*Front functions*/
+    public function getCategoriesFront($params=[]) {
+        $this->db->where('categories.status',1);
+        return $this->db->get('categories')->result_array();
+    }
 }
 ?>

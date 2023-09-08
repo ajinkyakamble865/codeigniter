@@ -72,11 +72,16 @@ function getArticlesFront($param = array()) {
         $this->db->or_like('author',trim($param['q']));
     }
 
-    $this->db->order_by('created_at','DESC');
+    $this->db->select('articles.*,categories.name as category_name');
+    $this->db->where('articles.status',1);
+    $this->db->order_by('articles.created_at','DESC');
+
+    $this->db->join('categories','categories.id=articles.category','left');
+
     $query = $this->db->get('articles');
 
     $articles = $query->result_array();
-    //echo $this->db->last_query();
+    // echo $this->db->last_query();
 
     return $articles;
 }

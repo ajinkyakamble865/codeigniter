@@ -32,10 +32,10 @@
               <a class="nav-link" href="<?php echo base_url('page/services');?>">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo base_url('page/about');?>">Blog</a>
+              <a class="nav-link" href="<?php echo base_url('blog');?>">Blog</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo base_url('page/about');?>">Categories</a>
+              <a class="nav-link" href="<?php echo base_url('blog/categories');?>">Categories</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?php echo base_url('page/about');?>">Contact Us</a>
