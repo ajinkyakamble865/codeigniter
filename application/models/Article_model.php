@@ -81,11 +81,10 @@ function getArticlesFront($param = array()) {
     $query = $this->db->get('articles');
 
     $articles = $query->result_array();
-    // echo $this->db->last_query();
+    echo $this->db->last_query();
 
     return $articles;
 }
-
 
 
 }
