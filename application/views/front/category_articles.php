@@ -1,7 +1,7 @@
 <?php $this->load->view('front/header'); ?>
 
 <div class="container">
-    <h3 class="pb-4 pt-4">Blog</h3>
+    <h3 class="pb-4 pt-4">Blog / <?php echo $category['name']; ?></h3>
 
     <?php if(!empty($articles)){
         foreach ($articles as $article) {
